@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Diet Planner</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #f0f4ff, #e6f7f1);
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+    }
+
+    h3 {
+      font-size: 2.5rem;
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: #4caf50;
+    }
+
+    #dietPlan {
+      width: 100%;
+      max-width: 600px;
+      margin-top: 20px;
+      background-color: #fff;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+      display: none; /* Initially hide the diet plan section */
+    }
+
+    #dietPlan h4 {
+      font-size: 1.5rem;
+      color: #333;
+    }
+
+    #dietPlan ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    #dietPlan li {
+      padding: 8px 0;
+      font-size: 1rem;
+      color: #555;
+    }
+
+    button {
+      padding: 6px 12px;
+      font-size: 14px;
+      border: none;
+      border-radius: 5px;
+      background-color: #4caf50;
+      color: white;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #388e3c;
+    }
+  </style>
+</head>
+<body>
+  <h3>Your Personalized Diet Plan</h3>
+  
+  <div id="dietPlan">
+    <h4>Recommended Diet for Today:</h4>
+    <ul id="dietList">
+      <!-- Diet Plan will be inserted here -->
+    </ul>
+  </div>
+
+  <div class="button-group">
+  <button onclick="window.location.href='diet.html';">Go to Mood Log</button>
+  <button onclick="generateDietPlan()">Generate Diet Plan</button>
+  </div>
+
+  <script>
+    function generateDietPlan() {
+      const moodLog = JSON.parse(localStorage.getItem('moodLog')) || [];
+      const lastMood = moodLog[moodLog.length - 1];
+      const todayDiet = document.getElementById('dietList');
+      const dietPlan = document.getElementById('dietPlan'); // Access the diet plan section
+      todayDiet.innerHTML = ''; // Clear any existing data
+
+      let dietSuggestions = [];
+      
+      if (lastMood) {
+        const mood = lastMood.mood;
+        if (mood === '😄' || mood === '🙂') {
+          dietSuggestions = [
+            'Breakfast: High-protein oatmeal with fruits',
+            'Lunch: Grilled chicken salad with quinoa',
+            'Dinner: Stir-fried veggies with tofu'
+          ];
+        } else if (mood === '😐') {
+          dietSuggestions = [
+            'Breakfast: Smoothie with spinach, banana, and almond milk',
+            'Lunch: Lentil soup with brown rice',
+            'Dinner: Veggie stir-fry with tofu'
+          ];
+        } else if (mood === '☹️' || mood === '😭') {
+          dietSuggestions = [
+            'Breakfast: Avocado toast with eggs',
+            'Lunch: Comfort soup with bread',
+            'Dinner: Pasta with tomato sauce and cheese'
+          ];
+        }
+
+        dietSuggestions.forEach(diet => {
+          const listItem = document.createElement('li');
+          listItem.textContent = diet;
+          todayDiet.appendChild(listItem);
+        });
+
+        // Show the diet plan section after generating the plan
+        dietPlan.style.display = 'block';
+      }
+    }
+  </script>
+</body>
+</html>

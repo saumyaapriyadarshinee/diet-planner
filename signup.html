@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign Up - AI Diet Planner</title>
+  <link rel="stylesheet" href="style2.css" />
+  <script defer src="signup.js"></script>
+</head>
+<body>
+  <div class="header">
+    <img src="logo.jpg" alt="AI Diet Planner Logo" class="logo" />
+    <h3 class="title">AI Diet Planner</h3>
+    <p class="subtitle">Nourishing You Naturally</p><!-- you can change the name -->
+  </div>
+
+  <div class="auth-container">
+    <h2>Create Your Health Profile</h2>
+    <form id="signup-form">
+      <input type="text" id="signup-name" placeholder="Full Name" required />
+      <input type="email" id="signup-email" placeholder="Email" required />
+      <input type="password" id="signup-password" placeholder="Password" required />
+
+      <input type="number" id="signup-age" placeholder="Age" required />
+      <select id="signup-gender" required>
+        <option value="" disabled selected>Gender</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+        <option value="Other">Other</option>
+      </select>
+
+      <input type="number" id="signup-height" placeholder="Height (cm)" required />
+      <input type="number" id="signup-weight" placeholder="Weight (kg)" required />
+
+      <select id="signup-goal" required>
+        <option value="" disabled selected>Health Goal</option>
+        <option value="Weight Loss">Weight Loss</option>
+        <option value="Maintain">Maintain</option>
+        <option value="Muscle Gain">Muscle Gain</option>
+      </select>
+
+      <select id="signup-diet" required>
+        <option value="" disabled selected>Diet Preference</option>
+        <option value="Vegetarian">Vegetarian</option>
+        <option value="Non-Vegetarian">Non-Vegetarian</option>
+        <option value="Vegan">Vegan</option>
+      </select>
+
+      <button type="submit">Sign Up</button>
+    </form>
+
+    <p>Already have an account? <a href="signin.html">Sign In</a></p>
+  </div>
+</body>
+</html>

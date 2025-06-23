@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Diet Planner - Mood Log</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #e0f7fa, #e1bee7);
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+    }
+
+    h3 {
+      font-size: 2.5rem;
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: #4caf50;
+    }
+
+    #moodForm {
+      margin-top: 20px;
+      background-color: #fff;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    #moodForm h4 {
+      font-size: 1.5rem;
+      color: #333;
+    }
+
+    select, button {
+      padding: 10px;
+      font-size: 1rem;
+      border-radius: 5px;
+      margin-top: 10px;
+    }
+
+    button {
+      background-color: #4caf50;
+      color: white;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #388e3c;
+    }
+
+    .mood-log {
+      margin-top: 20px;
+      background-color: #fff;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 600px;
+    }
+
+    .mood-log h4 {
+      font-size: 1.5rem;
+    }
+
+    .mood-log ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    .mood-log li {
+      padding: 8px 0;
+      font-size: 1rem;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <h3>Diet and Mood Log</h3>
+
+  <div id="moodForm">
+    <h4>Log Your Mood Today</h4>
+    <select id="moodSelect">
+      <option value="😄">Happy 😄</option>
+      <option value="🙂">Content 🙂</option>
+      <option value="😐">Neutral 😐</option>
+      <option value="☹️">Sad ☹️</option>
+      <option value="😭">Very Sad 😭</option>
+    </select>
+    <button onclick="logMood()">Log Mood</button>
+    <button onclick="window.location.href='diet1.html';">Go to Diet Plan</button>
+
+  </div>
+
+  <div class="mood-log">
+    <h4>Past Mood Logs</h4>
+    <ul id="moodLogList">
+      <!-- Past mood logs will be listed here -->
+    </ul>
+  </div>
+
+  <script>
+    // Function to log mood
+    function logMood() {
+      const mood = document.getElementById('moodSelect').value;
+      let moodLog = JSON.parse(localStorage.getItem('moodLog')) || [];
+      
+      moodLog.push({ mood: mood, date: new Date().toLocaleDateString() });
+      localStorage.setItem('moodLog', JSON.stringify(moodLog));
+
+      // Update the mood log list
+      updateMoodLog();
+    }
+
+    // Function to update the mood log display
+    function updateMoodLog() {
+      const moodLog = JSON.parse(localStorage.getItem('moodLog')) || [];
+      const moodLogList = document.getElementById('moodLogList');
+      moodLogList.innerHTML = '';  // Clear existing list
+
+      moodLog.forEach(log => {
+        const listItem = document.createElement('li');
+        listItem.textContent = `${log.date}: ${log.mood}`;
+        moodLogList.appendChild(listItem);
+      });
+    }
+
+    // Initial call to display mood logs on page load
+    updateMoodLog();
+  </script>
+</body>
+</html>

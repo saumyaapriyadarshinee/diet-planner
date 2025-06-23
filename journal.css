@@ -1,0 +1,134 @@
+/* Apply a soft background and center everything */
+body {
+   font-family: 'Poppins', Arial, sans-serif;
+   background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+   margin: 0;
+   padding: 0;
+   min-height: 100vh;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+
+.container {
+   width: 100%;
+   max-width: 600px;
+   background: white;
+   padding: 30px 40px;
+   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+   border-radius: 16px;
+   animation: fadeIn 0.8s ease;
+}
+
+h1, h2 {
+   text-align: center;
+   color: #2c3e50;
+   margin-bottom: 20px;
+}
+
+/* Textarea improvements */
+textarea {
+   width: 100%;
+   padding: 15px;
+   margin-top: 10px;
+   font-size: 16px;
+   border: 2px solid #e0e0e0;
+   border-radius: 10px;
+   resize: vertical;
+   min-height: 120px;
+   box-sizing: border-box;
+   transition: all 0.3s;
+}
+
+textarea:focus {
+   border-color: #4CAF50;
+   box-shadow: 0 0 8px rgba(76, 175, 80, 0.3);
+   outline: none;
+}
+
+/* Save Button - make it pop */
+.saveEntry {
+   width: 100%;
+   padding: 15px;
+   margin-top: 20px;
+   font-size: 18px;
+   font-weight: bold;
+   letter-spacing: 1px;
+   background: linear-gradient(135deg, #4CAF50, #81C784);
+   color: white;
+   border: none;
+   border-radius: 10px;
+   cursor: pointer;
+   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+   transition: all 0.4s;
+}
+
+.saveEntry:hover {
+   background: linear-gradient(135deg, #43a047, #66bb6a);
+   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+   transform: translateY(-2px);
+}
+
+/* Entry cards */
+.entry {
+   background: #f9f9f9;
+   padding: 20px;
+   margin-top: 20px;
+   border-radius: 12px;
+   position: relative;
+   animation: floatEffect 4s ease-in-out infinite;
+   transition: all 0.3s;
+}
+
+.entry:hover {
+   transform: scale(1.02);
+   background: #f0f0f0;
+}
+
+/* Delete Button */
+.deleteBtn {
+   position: absolute;
+   top: 15px;
+   right: 15px;
+   background: #ff6b6b;
+   color: white;
+   border: none;
+   padding: 8px 12px;
+   border-radius: 8px;
+   cursor: pointer;
+   font-size: 14px;
+   transition: background 0.3s, transform 0.2s;
+}
+
+.deleteBtn:hover {
+   background: #e63946;
+   transform: scale(1.1);
+}
+
+/* Timestamp style */
+.timestamp {
+   font-size: 12px;
+   color: #777;
+   margin-top: 10px;
+   display: block;
+   text-align: right;
+}
+
+/* Smooth fade-in */
+@keyframes fadeIn {
+   from { opacity: 0; transform: translateY(-30px); }
+   to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes floatEffect {
+   0% { transform: translateY(0px); }
+   50% { transform: translateY(-5px); }
+   100% { transform: translateY(0px); }
+}
+
+@keyframes gradientShift {
+   0% { background-position: 0% 50%; }
+   50% { background-position: 100% 50%; }
+   100% { background-position: 0% 50%; }
+}
